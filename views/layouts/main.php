@@ -38,7 +38,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav mr-auto'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site']],
+            ['label' => 'Home', 'url' => ['/']],
             ['label' => 'Categories', 'url' => ['/category']],
             ['label' => 'Jobs', 'url' => ['/job']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
