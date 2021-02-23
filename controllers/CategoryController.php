@@ -1,7 +1,8 @@
 <?php
 
 namespace app\controllers;
-namespace yii\web;
+
+use yii\web\Controller;
 
 class CategoryController extends Controller
 {
@@ -14,5 +15,4 @@ class CategoryController extends Controller
     {
         return $this->render('index');
     }
-
 }
