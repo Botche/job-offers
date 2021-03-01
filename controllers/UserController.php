@@ -2,9 +2,7 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
-
-class UserController extends Controller
+class UserController extends \yii\web\Controller
 {
     public function actionLogin()
     {
@@ -15,4 +13,5 @@ class UserController extends Controller
     {
         return $this->render('register');
     }
+
 }
