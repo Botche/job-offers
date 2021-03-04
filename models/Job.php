@@ -43,15 +43,15 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'user_id', 'title', 'description', 'type', 'requirements', 'salary_range', 'city', 'address', 'contact_email', 'contact_phone'], 'required'],
-            [['category_id', 'user_id', 'is_published', 'is_deleted'], 'integer'],
+            [['category_id', 'title', 'description', 'type', 'requirements', 'salary_range', 'city', 'address', 'contact_email', 'contact_phone'], 'required'],
+            [['category_id', 'is_published', 'is_deleted'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'deleted_at'], 'safe'],
             [['title', 'type', 'requirements', 'address', 'contact_email'], 'string', 'max' => 255],
             [['salary_range', 'city'], 'string', 'max' => 128],
             [['contact_phone'], 'string', 'max' => 16],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -62,9 +62,9 @@ class Job extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
+            'category_id' => 'Category name',
             'user_id' => 'User ID',
-            'title' => 'Title',
+            'title' => 'Job Title',
             'description' => 'Description',
             'type' => 'Type',
             'requirements' => 'Requirements',
@@ -73,7 +73,7 @@ class Job extends \yii\db\ActiveRecord
             'address' => 'Address',
             'contact_email' => 'Contact Email',
             'contact_phone' => 'Contact Phone',
-            'is_published' => 'Is Published',
+            'is_published' => 'Should be published',
             'created_at' => 'Created At',
             'is_deleted' => 'Is Deleted',
             'deleted_at' => 'Deleted At',
@@ -87,7 +87,7 @@ class Job extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     /**
@@ -97,6 +97,14 @@ class Job extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+
+    public function beforeSave($insert)
+    {
+        $this->user_id = yii::$app->user->identity->id;
+
+        return parent::beforeSave($insert);
     }
 }
