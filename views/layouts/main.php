@@ -50,7 +50,7 @@ AppAsset::register($this);
                     Yii::$app->user->isGuest
                         ? ['label' => 'Login', 'url' => ['/user/login']]
                         : ['label' => 'Logout (' . Yii::$app->user->identity->username . ')', 'url' => ['/user/logout']],
-                    yii::$app->user->isGuest
+                    Yii::$app->user->isGuest
                         ? ['label' => 'Register', 'url' => ['/user/register']]
                         : '',
                 ],

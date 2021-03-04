@@ -5,7 +5,6 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-use yii\base\Security;
 
 /**
  * This is the model class for table "user".
@@ -117,7 +116,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
-                $this->auth_key = yii::$app->security->generateRandomString();
+                $this->auth_key = Yii::$app->security->generateRandomString();
             }
             if (isset($this->password)) {
                 $this->password = md5($this->password);

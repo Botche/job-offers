@@ -13,15 +13,28 @@ class UserController extends Controller
     {
         $user = new User();
 
-        if ($user->load(Yii::$app->request->post())) {
+        $isPostRequest = $user->load(Yii::$app->request->post());
+        if ($isPostRequest) {
+            $enteredPassword = $user->password;
             $user = User::findByUsername($user->username);
-            yii::$app->user->login($user::findIdentity($user->id));
-            Yii::$app->getSession()->setFlash('success', $user->username . ' logged successfully!');
 
-            return $this->redirect('/');
+            $isNull = $user === null;
+            if ($isNull) {
+                $user = new User();
+            }
+
+            $areCredentialsTrue = $user->validatePassword($enteredPassword)
+                && Yii::$app->user->login($user);
+            if ($areCredentialsTrue) {
+                Yii::$app->getSession()->setFlash('success', $user->username . ' logged successfully!');
+
+                return $this->redirect('/');
+            }
+
+            $user->password = '';
+            Yii::$app->getSession()->setFlash('danger', 'Credentials are not correct!');
         }
 
-        $user->password = '';
         return $this->render('login', [
             'user' => $user,
         ]);
@@ -31,13 +44,12 @@ class UserController extends Controller
     {
         $user = new User();
 
-        if ($user->load(Yii::$app->request->post())) {
-            if ($user->validate()) {
-                $user->save();
-                Yii::$app->getSession()->setFlash('success', 'User registered successfully!');
+        $isModelSubmittedCorrectly = $user->load(Yii::$app->request->post()) && $user->validate();
+        if ($isModelSubmittedCorrectly) {
+            $user->save();
+            Yii::$app->getSession()->setFlash('success', 'User registered successfully!');
 
-                return $this->redirect('/');
-            }
+            return $this->redirect('/');
         }
 
         return $this->render('register', [
@@ -47,8 +59,8 @@ class UserController extends Controller
 
     public function actionLogout()
     {
-        yii::$app->user->logout();
-        
+        Yii::$app->user->logout();
+
         Yii::$app->getSession()->setFlash('success', 'Log out successfully!');
 
         return $this->redirect('/');

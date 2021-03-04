@@ -2,7 +2,7 @@
 
 $this->title = $job->title;
 
-$isOwner = yii::$app->user->identity->id === $job->user_id;
+$isOwner = Yii::$app->user->identity->id === $job->user_id;
 $dateToTimeStamp = strtotime($job->created_at);
 $formattedDate = date("j F, Y", $dateToTimeStamp);
 

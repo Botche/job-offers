@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use \yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "job".
@@ -27,7 +28,7 @@ use Yii;
  * @property Category $category
  * @property User $user
  */
-class Job extends \yii\db\ActiveRecord
+class Job extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -103,7 +104,7 @@ class Job extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
-        $this->user_id = yii::$app->user->identity->id;
+        $this->user_id = Yii::$app->user->identity->id;
 
         return parent::beforeSave($insert);
     }

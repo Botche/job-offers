@@ -8,7 +8,7 @@ use yii\widgets\LinkPager;
 <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
     <h1>Categories</h1>
 
-    <?php if (yii::$app->user->isGuest === false) : ?>
+    <?php if (Yii::$app->user->isGuest === false) : ?>
         <a class="btn btn-primary" href="/category/create">Create category</a>
     <?php endif; ?>
 </div>

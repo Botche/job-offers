@@ -82,20 +82,19 @@ class JobController extends Controller
     public function actionCreate()
     {
         $job = new Job();
-        
-        if (yii::$app->user->isGuest) {
+
+        if (Yii::$app->user->isGuest) {
             Yii::$app->getSession()->setFlash('danger', 'You do not have rights to do this!');
 
             return $this->redirect('/');
         }
 
-        if ($job->load(Yii::$app->request->post())) {
-            if ($job->validate()) {
-                $job->save();
-                Yii::$app->getSession()->setFlash('success', 'Job added successfully!');
+        $isModelSubmittedCorrectly = $job->load(Yii::$app->request->post()) && $job->validate();
+        if ($isModelSubmittedCorrectly) {
+            $job->save();
+            Yii::$app->getSession()->setFlash('success', 'Job added successfully!');
 
-                return $this->redirect('/job');
-            }
+            return $this->redirect('/job');
         }
 
         $categories = Category::find()
@@ -113,20 +112,19 @@ class JobController extends Controller
     {
         $job = Job::findOne($id);
 
-        $isOwner = yii::$app->user->identity->id === $job->user_id; 
+        $isOwner = Yii::$app->user->identity->id === $job->user_id;
         if ($isOwner === false) {
             Yii::$app->getSession()->setFlash('danger', 'You do not have rights to do this!');
 
             return $this->redirect('/job');
         }
 
-        if ($job->load(Yii::$app->request->post())) {
-            if ($job->validate()) {
-                $job->save();
-                Yii::$app->getSession()->setFlash('success', 'Job updated successfully!');
+        $isModelSubmittedCorrectly = $job->load(Yii::$app->request->post()) && $job->validate();
+        if ($isModelSubmittedCorrectly) {
+            $job->save();
+            Yii::$app->getSession()->setFlash('success', 'Job updated successfully!');
 
-                return $this->redirect('/job/details?id=' . $id);
-            }
+            return $this->redirect('/job/details?id=' . $id);
         }
 
         $categories = Category::find()
@@ -144,7 +142,7 @@ class JobController extends Controller
     {
         $job = Job::findOne($id);
 
-        $isOwner = yii::$app->user->identity->id === $job->user_id; 
+        $isOwner = Yii::$app->user->identity->id === $job->user_id;
         if ($isOwner === false) {
             Yii::$app->getSession()->setFlash('danger', 'You do not have rights to do this!');
 

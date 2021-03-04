@@ -60,19 +60,18 @@ class CategoryController extends Controller
     {
         $category = new Category();
 
-        if (yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             Yii::$app->getSession()->setFlash('danger', 'You do not have rights to do this!');
 
             return $this->redirect('/category');
         }
 
-        if ($category->load(Yii::$app->request->post())) {
-            if ($category->validate()) {
-                $category->save();
-                Yii::$app->getSession()->setFlash('success', 'Category added successfully!');
+        $isModelSubmittedCorrectly = $category->load(Yii::$app->request->post()) && $category->validate();
+        if ($isModelSubmittedCorrectly) {
+            $category->save();
+            Yii::$app->getSession()->setFlash('success', 'Category added successfully!');
 
-                return $this->redirect('/category');
-            }
+            return $this->redirect('/category');
         }
 
         return $this->render('create', [
