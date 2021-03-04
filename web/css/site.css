@@ -1,3 +1,22 @@
+.application {
+    display           : grid;
+    grid-template-rows: auto auto;
+}
+
+.wrap {
+    min-height: 94vh;
+}
+
 .pagination li {
     margin: 0 4px;
+}
+
+.inline {
+    display: inline;
+}
+
+@media (min-width: 768px) {
+    .card.col-md-4 {
+        flex: 0 0 31%;
+    }
 }

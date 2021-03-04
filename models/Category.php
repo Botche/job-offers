@@ -59,6 +59,6 @@ class Category extends \yii\db\ActiveRecord
      */
     public function getJobs()
     {
-        return $this->hasMany(Job::className(), ['category_id' => 'id']);
+        return $this->hasMany(Job::class, ['category_id' => 'id']);
     }
 }

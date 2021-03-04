@@ -27,7 +27,7 @@ $this->title = 'Home';
     <div class="body-content">
 
         <div class="row px-3 mb-4 justify-content-between">
-            <div class="card col-md-3 p-0">
+            <div class="card mt-4 col-xs-12 col-md-4 p-0">
                 <div class="card-body">
                     <h2 class="card-title text-center">Browse categories</h2>
 
@@ -40,7 +40,7 @@ $this->title = 'Home';
                     <a class="card-link btn btn-secondary w-100" href="/category">Browse categories &raquo;</a>
                 </div>
             </div>
-            <div class="card col-md-3 p-0">
+            <div class="card mt-4 col-xs-12 col-md-4 p-0">
                 <div class="card-body">
                     <h2 class="card-title text-center">Browse jobs</h2>
 
@@ -53,7 +53,7 @@ $this->title = 'Home';
                     <a class="card-link btn btn-secondary w-100" href="/job">Browse jobs &raquo;</a>
                 </div>
             </div>
-            <div class="card col-md-3 p-0">
+            <div class="card mt-4 col-xs-12 col-md-4 p-0">
                 <div class="card-body">
                     <h2 class="card-title text-center">Create a job</h2>
 
