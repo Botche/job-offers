@@ -1,13 +1,10 @@
 <?php
 
-$this->title = 'Create category';
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Category */
-/* @var $form ActiveForm */
+$this->title = 'Create category';
+
 ?>
 <div class="my-4">
     <h1 class="mb-3">Add category</h1>

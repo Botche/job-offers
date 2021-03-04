@@ -1,5 +1,8 @@
 <?php
 
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
 $this->title = 'Create job';
 
 $jobTypes = [
@@ -14,9 +17,6 @@ $salaries = [
     '$2000 - $4000' => '$2000 - $4000',
     '$4000 - $6000' => '$4000 - $6000',
 ];
-
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 ?>
 
@@ -43,4 +43,4 @@ use yii\widgets\ActiveForm;
     </div>
     <?php ActiveForm::end(); ?>
 
-</div><!-- job-create -->
+</div>

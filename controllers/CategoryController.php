@@ -3,15 +3,11 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
-use yii\web\Response;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
+use yii\web\Controller;
 
 use app\models\Category;
-use app\models\ContactForm;
-use app\models\LoginForm;
-use yii\data\Pagination;
 
 class CategoryController extends Controller
 {

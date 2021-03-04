@@ -3,16 +3,12 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
-use yii\web\Response;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
+use yii\web\Controller;
 
 use app\models\Category;
 use app\models\Job;
-use app\models\ContactForm;
-use app\models\LoginForm;
-use yii\data\Pagination;
 
 class JobController extends Controller
 {
@@ -73,6 +69,12 @@ class JobController extends Controller
             ])
             ->one();
 
+        $isNull = $job === null;
+        if ($isNull) {
+            Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
+
+            return $this->redirect('/job');
+        }
 
         return $this->render('details', [
             'job' => $job,
@@ -112,6 +114,13 @@ class JobController extends Controller
     {
         $job = Job::findOne($id);
 
+        $isNull = $job === null;
+        if ($isNull) {
+            Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
+
+            return $this->redirect('/job');
+        }
+
         $isOwner = Yii::$app->user->identity->id === $job->user_id;
         if ($isOwner === false) {
             Yii::$app->getSession()->setFlash('danger', 'You do not have rights to do this!');
@@ -141,6 +150,13 @@ class JobController extends Controller
     public function actionDelete($id)
     {
         $job = Job::findOne($id);
+
+        $isNull = $job === null;
+        if ($isNull) {
+            Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
+
+            return $this->redirect('/job');
+        }
 
         $isOwner = Yii::$app->user->identity->id === $job->user_id;
         if ($isOwner === false) {

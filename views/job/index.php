@@ -1,8 +1,8 @@
 <?php
 
-$this->title = 'Jobs';
-
 use yii\widgets\LinkPager;
+
+$this->title = 'Jobs';
 
 ?>
 

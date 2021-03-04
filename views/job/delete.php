@@ -2,8 +2,8 @@
 
 $this->title = 'Delete job';
 
-/* @var $this yii\web\View */
 ?>
+
 <h1>job/delete</h1>
 
 <p>

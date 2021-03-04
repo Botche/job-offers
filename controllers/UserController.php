@@ -17,7 +17,7 @@ class UserController extends Controller
         if ($isPostRequest) {
             $enteredPassword = $user->password;
             $user = User::findByUsername($user->username);
-
+            
             $isNull = $user === null;
             if ($isNull) {
                 $user = new User();

@@ -1,8 +1,8 @@
 <?php
 
-$this->title = 'Categories';
-
 use yii\widgets\LinkPager;
+
+$this->title = 'Categories';
 
 ?>
 <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
