@@ -26,7 +26,7 @@ class m210301_154345_create_job_table extends Migration
             'contact_email' => $this->string(255)->notNull(),
             'contact_phone' => $this->string(16)->notNull(),
             'is_published' => $this->boolean()->defaultValue(false)->notNull(),
-            'created_at' => $this->date()->defaultValue(date("Y-m-d H:i:s"))->notNull(),
+            'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')->notNull(),
             'is_deleted' => $this->boolean()->defaultValue(false)->notNull(),
             'deleted_at' => $this->date(),
         ]);

@@ -19,7 +19,7 @@ class m210301_154339_create_user_table extends Migration
             'email' => $this->string(255)->unique()->notNull(),
             'password' => $this->string(255)->notNull(),
             'auth_key' => $this->string(255)->notNull(),
-            'created_at' => $this->date()->defaultValue(date("Y-m-d H:i:s"))->notNull(),
+            'created_at' => $this->date()->defaultExpression('CURRENT_TIMESTAMP')->notNull(),
             'is_deleted' => $this->boolean()->defaultValue(false)->notNull(),
             'deleted_at' => $this->date(),
         ]);

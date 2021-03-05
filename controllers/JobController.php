@@ -35,7 +35,18 @@ class JobController extends Controller
     public function actionIndex($categoryId = null)
     {
         $query = Job::find()
-            ->where(['is_published' => 1]);
+            ->where([
+                'is_published' => 1,
+                'is_deleted' => 0,
+            ]);
+
+        $currentUser = Yii::$app->user->identity;
+        if (isset($currentUser)) {
+            $query->orWhere([
+                'user_id' => $currentUser->id,
+                'is_published' => 0,
+            ]);
+        }
 
         if (isset($categoryId)) {
             $query->andWhere(['category_id' => $categoryId]);
@@ -64,7 +75,13 @@ class JobController extends Controller
         $job = Job::find()
             ->where([
                 'job.id' => $id,
+                'is_deleted' => 0,
                 'is_published' => 1,
+            ])
+            ->orWhere([
+                'job.id' => $id,
+                'is_deleted' => 0,
+                'user_id' => Yii::$app->user->identity->id,
             ])
             ->one();
 
@@ -76,6 +93,7 @@ class JobController extends Controller
 
         return $this->render('details', [
             'job' => $job,
+            'isOwner' => Yii::$app->user->identity->id === $job->user_id,
         ]);
     }
 
@@ -144,6 +162,56 @@ class JobController extends Controller
         ]);
     }
 
+    public function actionPublish($id)
+    {
+        $job = Job::findOne($id);
+
+        if (isset($job) === false) {
+            Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
+
+            return $this->redirect('/job');
+        }
+
+        $isOwner = Yii::$app->user->identity->id === $job->user_id;
+        if ($isOwner === false) {
+            Yii::$app->getSession()->setFlash('danger', 'You do not have rights to do this!');
+
+            return $this->redirect('/job');
+        }
+
+        $job->is_published = 1;
+        $job->update();
+
+        Yii::$app->getSession()->setFlash('success', 'Job published successfully!');
+
+        return $this->redirect('/job');
+    }
+
+    public function actionUnpublish($id)
+    {
+        $job = Job::findOne($id);
+
+        if (isset($job) === false) {
+            Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
+
+            return $this->redirect('/job');
+        }
+
+        $isOwner = Yii::$app->user->identity->id === $job->user_id;
+        if ($isOwner === false) {
+            Yii::$app->getSession()->setFlash('danger', 'You do not have rights to do this!');
+
+            return $this->redirect('/job');
+        }
+
+        $job->is_published = 0;
+        $job->update();
+
+        Yii::$app->getSession()->setFlash('info', 'Job unpublished.');
+
+        return $this->redirect('/job');
+    }
+
     public function actionDelete($id)
     {
         $job = Job::findOne($id);
@@ -161,7 +229,9 @@ class JobController extends Controller
             return $this->redirect('/job');
         }
 
-        $job->delete();
+        $job->is_deleted = 1;
+        $job->deleted_at = date('Y-m-d');
+        $job->update();
 
         Yii::$app->getSession()->setFlash('success', 'Job deleted successfully!');
 

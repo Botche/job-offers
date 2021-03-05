@@ -2,18 +2,23 @@
 
 $this->title = $job->title;
 
-$isOwner = Yii::$app->user->identity->id === $job->user_id;
 $dateToTimeStamp = strtotime($job->created_at);
 $formattedDate = date("j F, Y", $dateToTimeStamp);
 
 ?>
 
-<div class="d-flex justify-content-between">
-    <a href="/job" class="ml-0 my-4 btn btn-outline-primary">Back to list</a>
+<div class="d-flex justify-content-between align-items-center my-4">
+    <a href="/job" class="ml-0 btn btn-outline-primary">Back to list</a>
     <div>
         <?php if ($isOwner) : ?>
-            <a href="/job/edit?id=<?= $job->id ?>" class="ml-0 my-4 btn btn-warning">Edit job</a>
-            <button type="button" data-toggle="modal" data-target="#deleteModal" class="ml-0 my-4 btn btn-danger">Delete job</button>
+            <?php if($job->is_published === 0) : ?>
+                <a href="/job/publish?id=<?= $job->id ?>" class="ml-0 btn btn-primary">Publish job</a>
+            <?php else : ?>
+                <a href="/job/unpublish?id=<?= $job->id ?>" class="ml-0 btn btn-primary">Unpublish job</a>
+            <?php endif; ?>
+
+            <a href="/job/edit?id=<?= $job->id ?>" class="ml-0 btn btn-warning">Edit job</a>
+            <button type="button" data-toggle="modal" data-target="#deleteModal" class="ml-0 btn btn-danger">Delete job</button>
         <?php endif; ?>
     </div>
 </div>

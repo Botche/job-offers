@@ -21,7 +21,10 @@ $salaries = [
 ?>
 
 <div class="mt-4">
-    <h1 class="mb-3">Add job</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mb-3">Add job</h1>
+        <a href="/job" class="ml-0 my-4 btn btn-outline-primary">Back to list</a>
+    </div>
 
     <?php $form = ActiveForm::begin(); ?>
 

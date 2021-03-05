@@ -48,7 +48,7 @@ class UserController extends Controller
             $user->save();
             Yii::$app->getSession()->setFlash('success', 'User registered successfully!');
 
-            return $this->redirect('/');
+            return $this->redirect('/user/login');
         }
 
         return $this->render('register', [
