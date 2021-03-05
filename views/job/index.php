@@ -38,7 +38,7 @@ $this->title = 'Jobs';
                 </div>
 
                 <div class="card-footer">
-                    <a href="/job/details?id=<?= $job->id ?>" class="btn btn-info w-100 mb-3">Details</a>
+                    <a href="/job/details/<?= $job->id ?>" class="btn btn-info w-100">Details</a>
                 </div>
             </div>
         <?php endforeach; ?>

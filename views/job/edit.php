@@ -22,7 +22,7 @@ $salaries = [
 <div class="mt-4">
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="mb-3">Edit job</h1>
-        <a href="/job/details?id=<?= $job->id ?>" class="ml-0 btn btn-outline-primary">Back to details</a>
+        <a href="/job/details/<?= $job->id ?>" class="ml-0 btn btn-outline-primary">Back to details</a>
     </div>
 
     <?php $form = ActiveForm::begin(); ?>
