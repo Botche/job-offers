@@ -37,8 +37,7 @@ class JobController extends Controller
         $query = Job::find()
             ->where(['is_published' => 1]);
 
-        $isCategoryIdNull = $categoryId === null;
-        if ($isCategoryIdNull === false) {
+        if (isset($categoryId)) {
             $query->andWhere(['category_id' => $categoryId]);
         }
 
@@ -69,8 +68,7 @@ class JobController extends Controller
             ])
             ->one();
 
-        $isNull = $job === null;
-        if ($isNull) {
+        if (isset($job) === false) {
             Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
 
             return $this->redirect('/job');
@@ -114,8 +112,7 @@ class JobController extends Controller
     {
         $job = Job::findOne($id);
 
-        $isNull = $job === null;
-        if ($isNull) {
+        if (isset($job) === false) {
             Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
 
             return $this->redirect('/job');
@@ -151,8 +148,7 @@ class JobController extends Controller
     {
         $job = Job::findOne($id);
 
-        $isNull = $job === null;
-        if ($isNull) {
+        if (isset($job) === false) {
             Yii::$app->getSession()->setFlash('danger', 'Such a job does not exists!');
 
             return $this->redirect('/job');

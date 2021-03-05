@@ -18,8 +18,7 @@ class UserController extends Controller
             $enteredPassword = $user->password;
             $user = User::findByUsername($user->username);
             
-            $isNull = $user === null;
-            if ($isNull) {
+            if (isset($user) === false) {
                 $user = new User();
             }
 
