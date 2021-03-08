@@ -120,6 +120,12 @@ class JobController extends Controller
             ->indexBy('id')
             ->column();
 
+        if (isset($categories) === false) {
+            Yii::$app->getSession()->setFlash('warning', 'Must be atleast one category to create jobs');
+
+            return $this->redirect('/category/create');
+        }
+
         return $this->render('create', [
             'job' => $job,
             'categories' => $categories,

@@ -13,6 +13,7 @@ $this->title = 'Categories';
     <?php endif; ?>
 </div>
 
+<?php if(empty($categories) === false) : ?>
 <ul class="list-group">
     <?php foreach ($categories as $category) : ?>
         <li class="list-group-item">
@@ -21,6 +22,9 @@ $this->title = 'Categories';
 
     <?php endforeach; ?>
 </ul>
+<?php else : ?>
+<p>There are no categories to list!</p>
+<?php endif; ?>
 
 <div class="mt-4">
     <?= LinkPager::widget(['pagination' => $pagination]); ?>

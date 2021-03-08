@@ -16,12 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($user, 'username')->textInput(['autofocus' => true]) ?>
-
     <?= $form->field($user, 'password')->passwordInput() ?>
-
-    <!-- </?= $form->field($user, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?> -->
 
     <div class="form-group">
         <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
