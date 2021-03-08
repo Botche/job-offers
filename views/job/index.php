@@ -26,8 +26,14 @@ $this->title = 'Jobs';
             $formattedDate = date("j F, Y", $dateToTimeStamp);
             ?>
 
-            <div class="card mb-3 mr-3 p-0 col-sm-6 col-md-4">
+            <div class="card mb-3 mr-3 p-0 col-sm-6 col-md-4 <?= $job->is_published === 0 ? 'not-published' : '' ?>">
                 <div class="card-header">
+                    <?php if ($job->is_published === 0) : ?>
+                        <svg class="icon not-published-icon">
+                            <use xlink:href="/svgs/sprite.svg#visibility"></use>
+                        </svg>
+                    <?php endif; ?>
+
                     <h3><?= $job->title ?></h3>
                 </div>
                 <div class="card-body">

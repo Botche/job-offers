@@ -58,7 +58,7 @@ class JobController extends Controller
         ]);
 
         $jobs = $query
-            ->select('id, title, description, address, city, created_at')
+            ->select('id, title, description, address, city, created_at, is_published')
             ->orderBy('created_at DESC')
             ->offset($pagination->offset)
             ->limit($pagination->limit)

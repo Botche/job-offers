@@ -15,6 +15,20 @@
     display: inline;
 }
 
+.not-published {
+    position: relative;
+
+    background-color: #eee;
+}
+
+.not-published-icon {
+    position: absolute;
+    right: 5%;
+
+    width: 30px;
+    height: 30px;
+}
+
 @media (min-width: 768px) {
     .card.col-md-4 {
         flex: 0 0 31%;
