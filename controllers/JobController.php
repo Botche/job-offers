@@ -73,6 +73,7 @@ class JobController extends Controller
     public function actionDetails($id)
     {
         $job = Job::find()
+            ->select('id, title, category_id, type, user_id, requirements, salary_range, address, description, city, contact_email, contact_phone, is_published')
             ->where([
                 'job.id' => $id,
                 'is_deleted' => 0,
@@ -90,7 +91,7 @@ class JobController extends Controller
 
             return $this->redirect('/job');
         }
-
+        
         return $this->render('details', [
             'job' => $job,
             'isOwner' => Yii::$app->user->identity->id === $job->user_id,

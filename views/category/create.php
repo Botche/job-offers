@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Create category';
 
@@ -9,7 +9,7 @@ $this->title = 'Create category';
 <div class="my-4">
     <h1 class="mb-3">Add category</h1>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'category-form']); ?>
     <?= $form->field($category, 'name'); ?>
 
     <div class="form-group">

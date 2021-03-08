@@ -41,6 +41,7 @@ class CategoryController extends Controller
         ]);
 
         $categories = $query
+            ->select('id, name')
             ->orderBy('name')
             ->offset($pagination->offset)
             ->limit($pagination->limit)

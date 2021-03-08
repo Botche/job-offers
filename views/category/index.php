@@ -6,7 +6,11 @@ $this->title = 'Categories';
 
 ?>
 <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+    <div class="d-flex align-items-center">
     <h1>Categories</h1>
+        &nbsp;
+        <small>Total count: <?= count($categories) ?></small>
+    </div>
 
     <?php if (Yii::$app->user->isGuest === false) : ?>
         <a class="btn btn-primary" href="/category/create">Create category</a>

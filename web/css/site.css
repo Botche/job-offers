@@ -23,10 +23,15 @@
 
 .not-published-icon {
     position: absolute;
-    right: 5%;
+    right   : 5%;
 
-    width: 30px;
+    width : 30px;
     height: 30px;
+}
+
+.form-control.is-valid,
+.form-control.is-invalid {
+    background-position: right calc(0.375em + 0.6rem) center
 }
 
 @media (min-width: 768px) {

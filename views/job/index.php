@@ -7,7 +7,11 @@ $this->title = 'Jobs';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
-    <h1>Jobs</h1>
+    <div class="d-flex align-items-center">
+        <h1>Jobs</h1>
+        &nbsp;
+        <small>Total count: <?= count($jobs) ?></small>
+    </div>
 
     <?php if (Yii::$app->user->isGuest === false) : ?>
         <a class="btn btn-primary" href="/job/create">Create job</a>

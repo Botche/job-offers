@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Edit job ' . $job->title;
 
@@ -27,13 +27,12 @@ $salaries = [
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($job, 'category_id')->dropDownList($categories, ['prompt' => 'Select Category']) ?>
+    <?= $form->field($job, 'category_id')->dropDownList($categories) ?>
     <?= $form->field($job, 'title') ?>
     <?= $form->field($job, 'description')->textarea(['rows' => 3]) ?>
-    <?= $form->field($job, 'type')->dropDownList($jobTypes, ['prompt' => 'Select Type'])
-    ?>
+    <?= $form->field($job, 'type')->dropDownList($jobTypes); ?>
     <?= $form->field($job, 'requirements') ?>
-    <?= $form->field($job, 'salary_range')->dropDownList($salaries, ['prompt' => 'Select salary range']) ?>
+    <?= $form->field($job, 'salary_range')->dropDownList($salaries) ?>
     <?= $form->field($job, 'city') ?>
     <?= $form->field($job, 'address') ?>
     <?= $form->field($job, 'contact_email') ?>
