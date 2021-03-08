@@ -27,7 +27,7 @@ class CategoryController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
-            ],
+            ], 
         ];
     }
 

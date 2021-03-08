@@ -13,7 +13,7 @@ class m210301_154345_create_job_table extends Migration
     public function safeUp()
     {
         $this->createTable('job', [
-            'id' => $this->primaryKey(),
+            'id' => $this->primaryKey()->notNull(),
             'category_id' => $this->integer()->notNull(),
             'user_id' => $this->integer()->notNull(),
             'title' => $this->string(255)->notNull(),
@@ -27,6 +27,7 @@ class m210301_154345_create_job_table extends Migration
             'contact_phone' => $this->string(16)->notNull(),
             'is_published' => $this->boolean()->defaultValue(false)->notNull(),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')->notNull(),
+            'updated_at' => $this->date(),
             'is_deleted' => $this->boolean()->defaultValue(false)->notNull(),
             'deleted_at' => $this->date(),
         ]);

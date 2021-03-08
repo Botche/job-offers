@@ -16,6 +16,7 @@ class m210301_142454_create_category_table extends Migration
             'id' => $this->primaryKey()->notNull(),
             'name' => $this->string()->notNull(),
             'created_at' => $this->date()->defaultExpression('CURRENT_TIMESTAMP')->notNull(),
+            'updated_at' => $this->date(),
             'is_deleted' => $this->boolean()->defaultValue(false)->notNull(),
             'deleted_at' => $this->date(),
         ]);
