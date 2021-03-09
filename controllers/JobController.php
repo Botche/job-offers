@@ -91,7 +91,7 @@ class JobController extends Controller
 
             return $this->redirect('/job');
         }
-        
+
         return $this->render('details', [
             'job' => $job,
             'isOwner' => Yii::$app->user->identity->id === $job->user_id,
