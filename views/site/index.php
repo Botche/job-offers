@@ -12,15 +12,15 @@ $this->title = 'Home';
         <p class="my-4 lead">Check out the newest offers in IT industry</p>
 
         <div class="row justfy-content-between">
-            <p class="col-md-3"></p>
+            <p class="col-md-2"></p>
             <p class="col-md-3 p-0">
                 <a class="btn btn-lg btn-info w-100" href="/category">Browse categories</a>
             </p>
-            <p class="col-md-1"></p>
-            <p class="col-md-2 p-0">
+            <p class="col-md-2"></p>
+            <p class="col-md-3 p-0">
                 <a class="btn btn-lg btn-success w-100" href="/job">Browse jobs</a>
             </p>
-            <p class="col-md-3"></p>
+            <p class="col-md-2"></p>
         </div>
     </div>
 
