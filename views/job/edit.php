@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Edit job ' . $job->title;
+$this->params['breadcrumbs'][] = ['label' => 'Jobs', 'url' => ['/job']];
+$this->params['breadcrumbs'][] = $this->title;
 
 $jobTypes = [
     'full_time' => 'Full time',

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Create category';
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="my-4">

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 $this->title = $name;
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 

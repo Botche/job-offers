@@ -1,6 +1,7 @@
 <?php
 
 $this->title = 'Register';
+$this->params['breadcrumbs'][] = $this->title;
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;

@@ -1,6 +1,8 @@
 <?php
 
 $this->title = $job->title;
+$this->params['breadcrumbs'][] = ['label' => 'Jobs', 'url' => ['/job']];
+$this->params['breadcrumbs'][] = $this->title;
 
 $dateToTimeStamp = strtotime($job->created_at);
 $formattedDate = date("j F, Y", $dateToTimeStamp);

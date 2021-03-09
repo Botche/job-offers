@@ -3,6 +3,7 @@
 use yii\widgets\LinkPager;
 
 $this->title = 'Jobs';
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 

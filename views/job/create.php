@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Create job';
+$this->params['breadcrumbs'][] = $this->title;
 
 $jobTypes = [
     'full_time' => 'Full time',

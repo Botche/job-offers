@@ -3,6 +3,7 @@
 use yii\widgets\LinkPager;
 
 $this->title = 'Categories';
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="d-flex justify-content-between align-items-center mb-4 mt-3">
